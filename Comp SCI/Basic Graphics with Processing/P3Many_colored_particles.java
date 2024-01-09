@@ -18,7 +18,7 @@ class Particle {
   void display() {
     float r = random(0, 255);
     float r2 = random(0, 255);
-    float r3 = random(0, 255);
+    float r3 = random(0, 255); //random colours
     fill(r, r2, r3);
     ellipse(x, y, 20, 20); //draw particle
   }
