@@ -1,7 +1,7 @@
 //P3 Particle
 //December 11
 //Ryan KS
-float x, y = 20;
+float x, y;
 
 void setup() {
   size(500, 500);
