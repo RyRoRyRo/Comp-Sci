@@ -50,10 +50,11 @@ public class Main {
 
     public static void runRound(int gameDifficulty) {
         Scanner scanner = new Scanner(System.in);
+        int Score = 0;
         int lives = 5 - gameDifficulty;
         for (int round = 1; lives > 0; round++) {
             int timer = 5000 / gameDifficulty - (round * 10);
-            System.out.println("Memorize! Lives: " + lives);
+            System.out.println("Memorize! Lives: " + lives + " Score: " + Score);
             int numbers[] = randomNumber(gameDifficulty, round);
             for (int n : numbers) {
                 System.out.print(n + ", ");
@@ -61,10 +62,44 @@ public class Main {
             wait(timer);
             clearScreen();
             System.out.println("Enter the Numbers: ");
-            int guess = scanner.nextInt();
+            String guess = scanner.nextLine();
+            String[] answer = guess.split(" ");
+            if (answer.length != numbers.length) {
+                lives--;
+                System.out.println("Wrong! ");
+                wait(2000);
+            }
+            else {
+                for (int i = 0; i < answer.length; i++) {
+                    if (Integer.parseInt(answer[i]) != numbers[i]) {
+                        System.out.println("Wrong!! Answers:");
+                        for (int n : numbers) {
+                            System.out.print(n + ", ");
+                        }
+                        lives--;
+                        wait(1500);
+                        break;
+                    } else {
+                        System.out.println("Correct!");
+                        wait(500);
+                        Score++;
+                        break;
+                    }
+                }
+            }
+            if (lives == 0) {
+                System.out.println("Game Over! Score: " + Score);
+                break;
+            }
 
 
         }
+        System.out.println("Current High Score: " + highScore);
+        if (Score > highScore) {
+            System.out.println("New High Score!");
+            highScore = Score;
+        }
+
     }
 
     private static void clearScreen() {
