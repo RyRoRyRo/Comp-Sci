@@ -6,15 +6,15 @@ public class Main {
     private static int[] scores = new int[3];
     private static int turn = 0;
     private static boolean playing = true;
-
+    private static boolean win = true;
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String symbol = "X";
         boolean multiplayer= true;
-            for (int i = 0; i < 9; i++){
-                board[i] = "-";
-            }
+        for (int i = 0; i < 9; i++){
+            board[i] = "-";
+        }
         System.out.println("Please select an option: ");
         System.out.println("1. Local-multiplayer: ");
         System.out.println("2. Versus CPU:");
@@ -26,17 +26,29 @@ public class Main {
             multiplayer = false;
         }
         while (playing) {
-                if (turn == 0){
-                    symbol = "X";
+            if (turn == 0){
+                symbol = "X";
+            }
+            if (turn == 1){
+                symbol = "O";
+            }
+            clearScreen();
+            printBoard();
+            wait(300);
+            if (multiplayer) {
+                System.out.println("Player " + (turn + 1) + "'s turn.");
+                System.out.println("Enter a board position to place your " + symbol + ": ");
+                int position = scanner.nextInt();
+                if (!board[position - 1].equals("-")) {
+                    System.out.println("Enter a valid board position.");
+                    wait(1000);
+                } else {
+                    board[position - 1] = symbol;
+                    turn = (turn + 1) % 2;
                 }
-                if (turn == 1){
-                    symbol = "O";
-                }
-                clearScreen();
-                printBoard();
-                wait(300);
-                if (multiplayer) {
-                    System.out.println("Player " + (turn + 1) + "'s turn.");
+            }
+            else {
+                if (turn == 0) {
                     System.out.println("Enter a board position to place your " + symbol + ": ");
                     int position = scanner.nextInt();
                     if (!board[position - 1].equals("-")) {
@@ -48,54 +60,54 @@ public class Main {
                     }
                 }
                 else {
-                    if (turn == 0) {
-                        System.out.println("Enter a board position to place your " + symbol + ": ");
-                        int position = scanner.nextInt();
-                        if (!board[position - 1].equals("-")) {
-                            System.out.println("Enter a valid board position.");
-                            wait(1000);
-                        } else {
-                            board[position - 1] = symbol;
-                            turn = (turn + 1) % 2;
-                        }
-                    }
-                    else {
-                        System.out.println("Waiting for CPU...");
-                        board[cpuMove()] = "O";
-                    }
+                    System.out.println("Waiting for CPU...");
+                    board[cpuMove()] = "O";
                 }
-                playing = checkWin(symbol);
             }
+            playing = checkWin(symbol);
+            win = draw();
+        }
         System.out.println(symbol + "'s Win!");
-        if (turn == 0) {
-            scores[0]++;
-        }
-        if (turn == 1) {
-            if (multiplayer){
-                scores[1]++;
+        if (win) {
+            if (turn == 1) {
+                scores[0]++;
             }
-            else {
-                scores[2]++;
+            if (turn == 0) { //switched because turns switch before win is checked
+                if (multiplayer) {
+                    scores[1]++;
+                } else {
+                    scores[2]++;
+                }
             }
+            wait(500);
         }
-        System.out.println("Player 1 Wins: " + scores[0] + " Player 2 Wins: " + scores[1] + " CPU Wins: " + scores[3]);
+        else {
+            System.out.println("Draw!");
+            wait(500);
+
+        }
+        System.out.println("Player 1 Wins: " + scores[0] + " Player 2 Wins: " + scores[1] + " CPU Wins: " + scores[2]);
         System.out.println("Play again? (y/n)");
         String playagain = scanner.nextLine();
         switch (playagain.toLowerCase()) {
-            case "y" -> main(args); //restart program
-            case "n" -> {
-                //end program
+            case "y" -> {
+                main(args); //restart program
             }
+            case "n" -> {
+                break; //end program
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + playagain.toLowerCase());
         }
+
     }
 
     private static boolean draw(){
         for (int i = 0; i < 9; i++){
             if (board[i].equals("-")) {
-                return false;
+                return true;
             }
         }
-        return true;
+        return false; //if its a draw return FALSE
     }
 
 
@@ -108,10 +120,10 @@ public class Main {
     private static int cpuMove(){
         wait(700);
         int position = (int)(Math.random() * 9);
-        if (!board[position].equals("-")) {
+        while (!board[position].equals("-")) {
             position = (int)(Math.random() * 9);
-            wait(1000);
         }
+        wait(1000);
         turn = (turn + 1) % 2;
         return position;
     }
@@ -140,7 +152,7 @@ public class Main {
         if (board[2].equals(symbol) && board[4].equals(symbol) && board[6].equals(symbol)) {
             return false;
         }
-        return true;
+        return draw();
     }
     private static void clearScreen() {
         for (int i = 0; i < 30; i++) {
