@@ -1,1 +1,16 @@
+Article: https://www.techinsurance.com/resources/acceptable-use-policy
+
+Summery: 
+An acceptable use policy, also known as a fair use policy or an AUP is a list of rules users must follow on the internet at a business or organisation. Acceptable use policies usually have specific rules, outlines consequences for breaking the rules and details the organisation's stance on granting access. 
+Acceptable use policies are important as it can be used as legal backing for companies to clearly outline their policies on their webspace and allows violators to meet punishment that can escalate to legal action against an individual violator. 
+Writing an acceptable use policy is important and there are three key elements to ensure your policy is stable and valid.
+1: Make sure your AUP is legal. Make sure to consider security laws and whether the AUP is compliant, federal data laws, the AUPs jurisdiction and laws regulation online behaviour. 
+2: Use the policy to promote data security practices. Cybersecurity is crucial for any organisation. Using your AUP to prevent downloading of suspicious files can keep your workspace safe from malicious hackers. It can also be used to keep users' individual accounts safe by forcing password updates, restricting certain website access or identifying ways a network can and cannot be used.
+3: Address cyber liability. AUP can limit an organisation's liability in the event of a data breach. Including disclaimers and warnings can reduce your cyber liability in the event of misuse of your network.
+Overall AUPs can help limit liability and damages done on your network; it can't outright prevent it.
+
+Main Issue: The main issue raised is the significance of implementing a proper AUP to mitigate cyber liability, strengthen legal backing, data security practices and addressing liability disclaimers.
+
+My Opinion on this article is that it does a good job of outlining what makes a good AUP and what users need to look out for and understand when on a company or organisations webspace.
+
 
