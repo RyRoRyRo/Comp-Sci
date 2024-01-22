@@ -6,24 +6,25 @@ November 8th
 Three things you can do to make a secure password are:
 
   1. Complexity and Uniqueness. 
-    Passwords are harder to crack if they are longer, have no repeting patern or phrases, have several unique and rarley used symbols and have no personal meaning to you.
+Passwords are harder to crack if they are longer, have no repeating pattern or phrases, have several unique and rarely used symbols and have no personal meaning to you.
 
-  2. Use Different Passwords. If you have the same password for every account a hacker only needs to guess your password once which creates major security issues. Having a unique password for each         website/account makes each individual password stronger and more secure.
+  2. Use Different Passwords. If you have the same password for every account a hacker only needs to guess your password once which creates major security issues. Having a unique password for each   website/account makes each individual password stronger and more secure.
 
-  3. Update and change password. Passwords are commonly leaked in security breaches so it is good practice to update your password regularaly. For important passwords every 1-2 months is good but for     non vital accounts/websites every 6-12 months works fine.
+  3. Update and change password. Passwords are commonly leaked in security breaches so it is good practice to update your password regularly. For important passwords every 1-2 months is good but for non vital accounts/websites every 6-12 months works fine.
 
 2: What is a phishing email and what is it designed to do?
 
-A phisihing email is a deceptive scam message attempting to trick its recipitent into revealing sensitive information.
+A phishing email is a deceptive scam message attempting to trick its recipient into revealing sensitive information.
 
 3: Are free apps really free? 
 
-Nothing in life is truly "free". An app may not have an initial download cost but usually has in app purchases or advertisements. Other apps are more malicious and collect or steal data and sell it to be used against you. You may not pay initially but you pay somehow.
+Nothing in life is truly "free". An app may not have an initial download cost but usually has in-app purchases or advertisements. Other apps are more malicious and collect or steal data and sell it to be used against you. You may not pay initially but you pay somehow.
 
-4: If we can download and install and app without having to pay any actually money for the app why would companies give these apps away?
+4: If we can download and install an app without having to pay any actual money for the app, why would companies give these apps away?
 
 In order to collect data or money from ads. Either way, the company is making money from the app somehow.
 
-5: Why is it a good idea to go into privacy setting on an iphone or the application manager setting on an android phone and check the settings after you have installed an app? 
+5: Why is it a good idea to go into the privacy setting on an iphone or the application manager setting on an android phone and check the settings after you have installed an app? 
 
-Apps can come with certain unwanted permissions after download. Some apps may ask to make and manage phonecalls, use the camera, get your GPS location or even personal information like your name. These settings can be turned off in the privacy settings of most phones.
+Apps can come with certain unwanted permissions after download. Some apps may ask to make and manage phone calls, use the camera, get your GPS location or even personal information like your name. These settings can be turned off in the privacy settings of most phones.
+
