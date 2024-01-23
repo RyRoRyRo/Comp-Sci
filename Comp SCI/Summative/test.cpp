@@ -4,56 +4,99 @@ using namespace std;
 
 void printBoard(int length, string arr[][10]);
 
-void playerMove(int size, string arr[10][10], char symbol) {
+void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
     int row, col;
+    if (CPU == false) {
     cout << "Enter the coordinates (X Y) to set to '" << symbol << "': ";
     cin >> col >> row;
 
     if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
         arr[row - 1][col - 1] = symbol;
-    } else {
-        cout << "Invalid coordinates. Exiting program." << endl;
+    } 
+    else {
+        cout << "Invalid coordinates." << endl;
+        }
     }
+    else {
+        if (symbol == 'X') {
+            cout << "Enter the coordinates (X Y) to set to 'X': ";
+            cin >> col >> row;
+
+            if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
+                arr[row - 1][col - 1] = symbol;
+            } 
+            else {
+                cout << "Invalid coordinates." << endl;
+                }
+            }
+        if (symbol == 'O') {
+            cout << "Waiting for CPU...";
+            }
+        }
 }
 
-void changeTurn(char symbol){
+
+char changeTurn(char symbol){
     if (symbol == 'X'){
-        symbol = 'O';
+        return 'O';
     }
     if (symbol == 'O'){
-        symbol = 'X';
+        return 'X';
     }
 }
     
 
 int main() {
     int length = 0;
-    bool invalidLength = true;
+    bool invalidInput = true;
     int winCondition = 3;
     char symbol = 'X';
     bool playing = true;
+    bool singleplayer = false;
+    int input;
     
-    while (invalidLength) {
-        cout << "Enter Board Length:" << endl;
+    while (invalidInput) {
+        cout << "Enter Board Size:" << endl;
         cin >> length;
 
         if (length < 3 || length > 10) {
-            cout << "Invalid Board Length. Enter a value between 3 and 10." << endl;
+            cout << "Invalid Board Size. Enter a value between 3 and 10." << endl;
         } else {
-            invalidLength = false;
+            invalidInput = false;
         }
     }
-    invalidLength = true;
-     while (invalidLength) {
+    invalidInput = true;
+     while (invalidInput) {
         cout << "Enter Ammount in a row needed to win:" << endl;
         cin >> winCondition;
 
         if (winCondition < 3 || winCondition > length) {
             cout << "Invalid win condition Length. Enter a value between 3 and " << length << "." << endl;
         } else {
-            invalidLength = false;
+            invalidInput = false;
         }
     }
+    invalidInput = true;
+     while (invalidInput) {
+        cout << "Pick an option:" << endl;
+        cout << "1. Local Multiplayer" << endl;
+        cout << "2. Versus CPU" << endl;
+        cin >> input;
+        if (input == 1) {
+            cout << "Starting local multiplayer game..." << endl;
+            singleplayer = false;
+            invalidInput = false;
+        }
+        if (input == 2) {
+            cout << "Starting singleplayer game..." << endl;
+            singleplayer = true;
+            invalidInput = false;
+        }
+        else {
+            cout << "Please pick either 1 or 2." << endl;
+        }
+    }
+    
     
     string arr[10][10];
 
@@ -64,10 +107,11 @@ int main() {
     }
     
     
+    
     while (playing) {
     printBoard(length, arr);
-    playerMove(length, arr, symbol);
-    changeTurn(symbol);
+    playerMove(length, arr, symbol, singleplayer);
+    symbol = changeTurn(symbol);
     }
     
     return 0;
