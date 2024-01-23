@@ -1,38 +1,64 @@
 #include <iostream>
+#include <thread>
+#include <chrono>
 using namespace std;
 
 
 void printBoard(int length, string arr[][10]);
 
 void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
-    int row, col;
-    if (CPU == false) {
-    cout << "Enter the coordinates (X Y) to set to '" << symbol << "': ";
-    cin >> col >> row;
-
-    if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
-        arr[row - 1][col - 1] = symbol;
-    } 
-    else {
-        cout << "Invalid coordinates." << endl;
+    bool invalidCords = true;
+    while (invalidCords) {
+        int row, col;
+        if (CPU == false) {
+        cout << "Enter the coordinates (X Y) to set to '" << symbol << "': ";
+        cin >> col >> row;
+    
+        if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
+            arr[row - 1][col - 1] = symbol;
+            invalidCords = false;
+   
+        } 
+        else {
+            cout << "Invalid coordinates." << endl;
+            cin.clear(); 
+            cin.ignore(10000, '\n');
+            }
+        }
+        else {
+            if (symbol == 'X') {
+                cout << "Enter the coordinates (X Y) to set to 'X': ";
+                cin >> col >> row;
+    
+                if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
+                    arr[row - 1][col - 1] = symbol;
+                    invalidCords = false;
+                }
+                
+                else {
+                    cout << "Invalid coordinates." << endl;
+                    cin.clear(); 
+                    cin.ignore(10000, '\n');
+                    }
+                }
+            if (symbol == 'O') {
+                cout << "Waiting for CPU..." << endl;
+                this_thread::sleep_for(std::chrono::seconds(3));
+                row = (std::rand() % size);
+                col = (std::rand() % size);
+                while (invalidCords){
+                    if (arr[row][col] !== '-') {
+                        cout << "Invalid coordinates FROM BOT." << endl;
+                    }
+                    else {
+                        arr[row - 1][col - 1] = 'O';
+                        invalidCords = false;
+                    }
+                }
+                
+            }
         }
     }
-    else {
-        if (symbol == 'X') {
-            cout << "Enter the coordinates (X Y) to set to 'X': ";
-            cin >> col >> row;
-
-            if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
-                arr[row - 1][col - 1] = symbol;
-            } 
-            else {
-                cout << "Invalid coordinates." << endl;
-                }
-            }
-        if (symbol == 'O') {
-            cout << "Waiting for CPU..." << endl;
-            }
-        }
 }
 
 
