@@ -30,7 +30,7 @@ void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
                 }
             }
         if (symbol == 'O') {
-            cout << "Waiting for CPU...";
+            cout << "Waiting for CPU..." << endl;
             }
         }
 }
