@@ -73,16 +73,42 @@ char changeTurn(char symbol){
 }
     
 
-bool draw(string arr[10][10], int size) {
+bool Draw(string arr[10][10], int size) {
+    bool draw = true;
     for (int i = 0; i < size; i++) {
-        if (arr[i][i] == "-") {
-            return false;
-            break;
+        for (int j = 0; j < size; j++) {
+            if (arr[i][j] == "-") {
+                draw = false;
+            }
         }
+    }
+    if (draw) {
+        return true;
+    }
+    else {
+        return false;
     }
 }
 
-
+bool winCheck(string arr[10][10], int size, char symbol, int winLength) {
+    for (int i = 0; i < size; i++) {
+        int winCon = 0;
+        for (int j = 0; j < size; j++) { //i + X, j = Y
+            if (arr[i][j] == symbol) {
+                for (int n = 0; n < winLength; n++) {
+                    if (arr[i + 1][j] == symbol) {
+                        winCon++;
+                        if (winCon == winLength){
+                            break;
+                            return true;
+                        }
+                        
+                    }
+                }
+            }
+        }
+    }
+}
 int main() {
     int length = 0;
     bool invalidInput = true;
@@ -91,6 +117,7 @@ int main() {
     bool playing = true;
     bool singleplayer = false;
     int input;
+    bool draw;
     
     while (invalidInput) {
         cout << "Enter Board Size:" << endl;
@@ -153,7 +180,11 @@ int main() {
     printBoard(length, arr);
     playerMove(length, arr, symbol, singleplayer);
     symbol = changeTurn(symbol);
-    playing = draw(arr, length);
+    draw = Draw(arr, length);
+        if (draw){
+            playing = false;
+            cout << "Draw!" << endl;
+        }
     }
     
     return 0;
