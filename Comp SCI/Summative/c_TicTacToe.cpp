@@ -13,7 +13,8 @@ void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
         if (CPU == false) {
         cout << "Enter the coordinates (X Y) to set to '" << symbol << "': ";
         cin >> col >> row;
-    
+        cin.clear(); 
+        cin.ignore(10000, '\n');
         if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
             arr[row - 1][col - 1] = symbol;
             invalidCords = false;
@@ -21,15 +22,15 @@ void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
         } 
         else {
             cout << "Invalid coordinates." << endl;
-            cin.clear(); 
-            cin.ignore(10000, '\n');
+
             }
         }
         else {
             if (symbol == 'X') {
                 cout << "Enter the coordinates (X Y) to set to 'X': ";
                 cin >> col >> row;
-    
+                cin.clear(); 
+                cin.ignore(10000, '\n');
                 if (row - 1 >= 0 && row -1 < size && col - 1 >= 0 && col - 1 < size) {
                     arr[row - 1][col - 1] = symbol;
                     invalidCords = false;
@@ -37,8 +38,6 @@ void playerMove(int size, string arr[10][10], char symbol, bool CPU) {
                 
                 else {
                     cout << "Invalid coordinates." << endl;
-                    cin.clear(); 
-                    cin.ignore(10000, '\n');
                     }
                 }
             if (symbol == 'O') {
@@ -74,6 +73,16 @@ char changeTurn(char symbol){
 }
     
 
+bool draw(string arr[10][10], int size) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i][i] == "-") {
+            return false;
+            break;
+        }
+    }
+}
+
+
 int main() {
     int length = 0;
     bool invalidInput = true;
@@ -86,7 +95,8 @@ int main() {
     while (invalidInput) {
         cout << "Enter Board Size:" << endl;
         cin >> length;
-
+        cin.clear(); 
+        cin.ignore(10000, '\n');
         if (length < 3 || length > 10) {
             cout << "Invalid Board Size. Enter a value between 3 and 10." << endl;
         } else {
@@ -97,7 +107,8 @@ int main() {
      while (invalidInput) {
         cout << "Enter Ammount in a row needed to win:" << endl;
         cin >> winCondition;
-
+        cin.clear(); 
+        cin.ignore(10000, '\n');
         if (winCondition < 3 || winCondition > length) {
             cout << "Invalid win condition Length. Enter a value between 3 and " << length << "." << endl;
         } else {
@@ -110,6 +121,8 @@ int main() {
         cout << "1. Local Multiplayer" << endl;
         cout << "2. Versus CPU" << endl;
         cin >> input;
+        cin.clear(); 
+        cin.ignore(10000, '\n');
         if (input == 1) {
             cout << "Starting local multiplayer game..." << endl;
             singleplayer = false;
@@ -140,6 +153,7 @@ int main() {
     printBoard(length, arr);
     playerMove(length, arr, symbol, singleplayer);
     symbol = changeTurn(symbol);
+    playing = draw(arr, length);
     }
     
     return 0;
