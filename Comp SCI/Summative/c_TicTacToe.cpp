@@ -91,16 +91,52 @@ bool Draw(string arr[10][10], int size) {
 }
 
 bool winCheck(string arr[10][10], int size, char symbol, int winLength) {
-    for (int i = 0; i < size; i++) {
-        int winCon = 0;
+    string winChar(1, symbol);
+    int winCon = 0;
+    for (int i = 0; i < size ; i++) { //counts up by size squared
         for (int j = 0; j < size; j++) { //i + X, j = Y
-            if (arr[i][j] == symbol) {
+        cout << i << j <<endl;
+            if (arr[i][j] == winChar) {
+                winCon = 0;
                 for (int n = 0; n < winLength; n++) {
-                    if (arr[i + 1][j] == symbol) {
+                    if (arr[i + n][j] == winChar) {
                         winCon++;
                         if (winCon == winLength){
-                            break;
                             return true;
+                            break;
+                        }
+                        
+                    }
+                }
+                winCon = 0;
+                for (int n = 0; n < winLength; n++) {
+                    if (arr[i][j + n] == winChar) {
+                        winCon++;
+                        if (winCon == winLength){
+                            return true;
+                            break;
+                        }
+                        
+                    }
+                }
+                winCon = 0;
+                for (int n = 0; n < winLength; n++) {
+                    if (arr[i + n][j + n] == winChar) {
+                        winCon++;
+                        if (winCon == winLength){
+                            return true;
+                            break;
+                        }
+                        
+                    }
+                }
+                winCon = 0;
+                for (int n = 0; n < winLength; n++) {
+                    if (arr[i - n][j + n] == winChar) {
+                        winCon++;
+                        if (winCon == winLength){
+                            return true;
+                            break;
                         }
                         
                     }
@@ -108,6 +144,7 @@ bool winCheck(string arr[10][10], int size, char symbol, int winLength) {
             }
         }
     }
+    return false;
 }
 int main() {
     int length = 0;
@@ -118,7 +155,7 @@ int main() {
     bool singleplayer = false;
     int input;
     bool draw;
-    
+    bool win = false;
     while (invalidInput) {
         cout << "Enter Board Size:" << endl;
         cin >> length;
@@ -179,14 +216,19 @@ int main() {
     while (playing) {
     printBoard(length, arr);
     playerMove(length, arr, symbol, singleplayer);
-    symbol = changeTurn(symbol);
     draw = Draw(arr, length);
+    win = winCheck(arr, length, symbol, winCondition);
         if (draw){
             playing = false;
             cout << "Draw!" << endl;
         }
+        if (win){
+            playing = false;
+            cout << symbol << "'s Wins!" << endl;
+
+        }
     }
-    
+    symbol = changeTurn(symbol);
     return 0;
 }
 
