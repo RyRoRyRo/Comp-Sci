@@ -1,3 +1,7 @@
+//January 22, 2023
+//Summative 4: TicTacToe C++
+//Ryan KS
+//Game where you try to get several in a row as either X's or O's on a customizable grid. Additional features included.
 #include <iostream>
 #include <thread>
 #include <chrono>
